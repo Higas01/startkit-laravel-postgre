@@ -1,0 +1,30 @@
+services:
+  api:
+    build:
+      context: ./project
+      dockerfile: Dockerfile 
+    entrypoint: php artisan serve --host=0.0.0.0 --port=8000
+    environment:
+      - DB_CONNECT=pgsql 
+      - DB_HOST=db 
+      - DB_PORT=5432
+      - DB_DATABASE=learning_laravel
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=root
+      - APP_DEBUG=true
+      - APP_ENV=local
+      - APP_KEY=base64:4Xf5WV5f16qrQKHDvAFy0gp/ddF5t/B8pfXiCjsYfNg=
+      - SESSION_DRIVER=file
+    ports:
+      - "8000:8000"
+      - "5173:5173"
+    volumes:
+      - ./project:/app
+
+  db:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: learning_laravel
+    ports:
+      - 6000:5432
