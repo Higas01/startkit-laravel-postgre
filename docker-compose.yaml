@@ -3,7 +3,7 @@ services:
     build:
       context: ./project
       dockerfile: Dockerfile 
-    entrypoint: php artisan serve --host=0.0.0.0 --port=8000
+    entrypoint: sh -c "php artisan serve --host=0.0.0.0 --port=8000 & npm run dev"
     environment:
       - DB_CONNECT=pgsql 
       - DB_HOST=db 
@@ -15,6 +15,7 @@ services:
       - APP_ENV=local
       - APP_KEY=base64:4Xf5WV5f16qrQKHDvAFy0gp/ddF5t/B8pfXiCjsYfNg=
       - SESSION_DRIVER=file
+      - APP_URL=http://localhost
     ports:
       - "8000:8000"
       - "5173:5173"

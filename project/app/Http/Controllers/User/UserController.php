@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use Inertia\Inertia;
 
 class UserController extends Controller {
     public function __construct(
@@ -10,10 +11,8 @@ class UserController extends Controller {
     ) {
     }
 
-    public function register() {
-        return response()->json([
-            message => 'Usuário cadastrado com sucesso'
-        ]);
+    public function getAll() {
+        return Inertia::render('teste');
     }
 
 
